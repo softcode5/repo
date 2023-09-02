@@ -1,0 +1,17 @@
+const obj1 = { a: 1, b: 2, c: 3 };
+const obj2 = { b: 4, d: 5, e: 6 };
+
+const mergedObject = [...Object.keys(obj1), ...Object.keys(obj2)]
+  .reduce((result, key) => {
+    if (obj1[key] !== undefined && obj2[key] !== undefined) {
+      result[`${key}_1`] = obj1[key];
+      result[`${key}_2`] = obj2[key];
+    } else if (obj1[key] !== undefined) {
+      result[key] = obj1[key];
+    } else {
+      result[key] = obj2[key];
+    }
+    return result;
+  }, {});
+
+console.log(mergedObject);
